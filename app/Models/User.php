@@ -6,6 +6,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Carbon\Carbon;
+
 
 class User extends Authenticatable
 {
@@ -43,5 +45,24 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Menghitung saldo cuti berdasarkan masa kerja.
+     *
+     * @return int
+     */
+    public function getLeaveBalance(): int
+    {
+        $joinDate = Carbon::createFromFormat('d/m/Y', $this->join_date);
+        $monthsWorked = $joinDate->diffInMonths(Carbon::now());
+
+        if ($monthsWorked <= 6) {
+            return 0;
+        } elseif ($monthsWorked <= 11) {
+            return 6;
+        } else {
+            return 12;
+        }
     }
 }
