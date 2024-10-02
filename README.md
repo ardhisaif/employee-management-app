@@ -24,12 +24,6 @@ This application is an employee leave request system built using Laravel. With t
     - [Complete User Information](#complete-user-information)
     - [Login Credentials](#login-credentials)
     - [Dashboard](#dashboard)
-    - [Show Product](#show-product)
-    - [Search Product](#search-product)
-    - [Delete Product](#delete-product)
-    - [Add Product](#add-product)
-    - [Edit Product](#edit-product)
-1. [Validation](#validation)
 
 ## Database Schema
 
