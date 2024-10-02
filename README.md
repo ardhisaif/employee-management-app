@@ -105,8 +105,8 @@ Visit `http://localhost:8000` in your browser to see the application.
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/your-username/example-app.git
-  cd example-app
+  git clone git@github.com:ardhisaif/employee-management-app.git
+  cd employee-management-app/
   ```
 
 2. Install the dependencies:
