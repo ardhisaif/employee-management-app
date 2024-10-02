@@ -2,10 +2,6 @@
 
 This application is an employee leave request system built using Laravel. With this application, employees can submit leave requests online. 
 
-## Table of Contents
-
-1. [Database Schema](#database-schema)
-
 ## Database Schema
 This application is an employee leave request system built using Laravel. With this application, employees can submit leave requests online. 
 
