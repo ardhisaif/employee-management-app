@@ -1,66 +1,229 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Employee Management App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This application is an employee leave request system built using Laravel. With this application, employees can submit leave requests online. 
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. [Database Schema](#database-schema)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Database Schema
+This application is an employee leave request system built using Laravel. With this application, employees can submit leave requests online. 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Table of Contents
 
-## Learning Laravel
+1. [Database Schema](#database-schema)
+1. [Setup](#setup)
+    - [Composer and NPM Installation](#composer-and-npm-installation)
+    - [Environment Configuration](#environment-configuration)
+    - [Generate Application Key](#generate-application-key)
+    - [Database Migration and Seeding](#database-migration-and-seeding)
+    - [Running the Application](#running-the-application)
+1. [Routing Information](#routing-information)
+1. [Usage](#usage)
+    - [Register Credentials](#register-credentials)
+    - [Complete User Information](#complete-user-information)
+    - [Login Credentials](#login-credentials)
+    - [Dashboard](#dashboard)
+    - [Show Product](#show-product)
+    - [Search Product](#search-product)
+    - [Delete Product](#delete-product)
+    - [Add Product](#add-product)
+    - [Edit Product](#edit-product)
+1. [Validation](#validation)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Database Schema
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Users
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| id       | name   | email | email_verified_at | password | remember_token | birth_place | sex | birth_date | status | join_date | dept | job_title | created_at | updated_at |
+| -------- | ------ | ----- | ----------------- | -------- | -------------- | ----------- | --- | ---------- | ------ | --------- | ---- | --------- | ---------- | ---------- |
+| BIGINT   | VARCHAR| VARCHAR| TIMESTAMP         | VARCHAR  | VARCHAR        | VARCHAR     | VARCHAR | VARCHAR   | VARCHAR | VARCHAR  | VARCHAR | VARCHAR  |  TIMESTAMP  | TIMESTAMP  |
 
-## Laravel Sponsors
+### Leave Requests
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| id            | user_id       | start_date | end_date   | days_requested | created_at | updated_at |
+| ------------- | ------------- | ---------- | ---------- | -------------- | ---------- | ---------- |
+| BIGINT        | BIGINT        | DATE       | DATE       | INT            | TIMESTAMP  | TIMESTAMP  |
 
-### Premium Partners
+## Setup
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Git Clone
 
-## Contributing
+1. Clone the repository:
+  ```bash
+  git clone https://github.com/your-username/example-app.git
+  cd example-app
+  ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Composer and NPM Installation
 
-## Code of Conduct
+2. Install the dependencies:
+  ```bash
+  composer install
+  npm install
+  ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Environment Configuration
 
-## Security Vulnerabilities
+3. Copy the `.env.example` file to `.env`:
+  ```bash
+  cp .env.example .env
+  ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Update the `.env` file with your MySQL database configuration.
+
+### Generate Application Key
+
+4. Generate the application key:
+  ```bash
+  php artisan key:generate
+  ```
+
+5. Configure your database settings in the `.env` file.
+
+
+### Database Migration and Seeding
+
+## Migration
+
+Run the database migrations:
+```bash
+php artisan migrate
+```
+
+## Seeding
+
+Seed the database with initial data:
+```bash
+php artisan db:seed
+```
+
+### Running the Application
+
+Start the local development server:
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` in your browser to see the application.
+
+## Additional Commands
+
+- To run tests:
+  ```bash
+  php artisan test
+  ```
+
+- To clear application cache:
+  ```bash
+  php artisan cache:clear
+  ```
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License.
+
+## Installation
+
+1. Clone the repository:
+  ```bash
+  git clone https://github.com/your-username/example-app.git
+  cd example-app
+  ```
+
+2. Install the dependencies:
+  ```bash
+  composer install
+  ```
+
+3. Copy the `.env.example` file to `.env`:
+  ```bash
+  cp .env.example .env
+  ```
+
+4. Generate the application key:
+  ```bash
+  php artisan key:generate
+  ```
+
+5. Configure your database settings in the `.env` file.
+
+## Migration
+
+Run the database migrations:
+```bash
+php artisan migrate
+```
+
+## Seeding
+
+Seed the database with initial data:
+```bash
+php artisan db:seed
+```
+
+## Running the Application
+
+Start the local development server:
+```bash
+php artisan serve
+```
+
+Visit `http://localhost:8000` in your browser to see the application.
+
+## Routing Information
+
+| Method | Route        | User Type  | Action                          |
+| ------ | ------------ | ---------- | ------------------------------- |
+| GET    | /            | Guest      | Display the home page.          |
+| GET    | /dashboard   | Auth       | Display the dashboard.          |
+| GET    | /user-info   | Auth       | Display the user info form.     |
+| POST   | /user-info   | Auth       | Store user info.                |
+| GET    | /profile     | Auth       | Display the profile edit form.  |
+| PATCH  | /profile     | Auth       | Update the profile.             |
+| DELETE | /profile     | Auth       | Delete the profile.             |
+| POST   | /leave       | Auth       | Submit a leave request.         |
+| GET    | /register    | Guest      | Display the registration form.  |
+| POST   | /register    | Guest      | Process the registration.       |
+
+## Usage
+
+### Register Credentials
+
+To log in as a regular user, use the following credentials:
+
+-   Email: testing@gmail.com
+-   Password: rahasia123
+
+![Register](/demo/register.png)
+
+### Complete User Information
+
+Fill in your complete personal information
+
+![UserInfo](/demo/userInfo.png)
+
+### Login Credentials
+
+To log in as a regular user, use the following credentials:
+
+-   Email: anggameidianto@gmail.com
+-   Password: rahasia123
+
+![Login](/demo/login.png)
+
+### Dashboard
+
+The dashboard provides an overview of the user's information and leave management. It includes the following sections:
+
+- **User Information**: Displays the user's personal details such as name, email, department, and job title.
+- **Leave Quota**: Shows the total number of leave days allocated to the user for the current year.
+- **Leave Balance**: Displays the remaining leave days available for the user.
+- **Leave History**: Lists all the leave requests submitted by the user, including the status of each request (approved, pending, or rejected).
+- **Leave Request**: Allows the user to submit a new leave request by specifying the start date, end date, and reason for the leave.
+
+![Dashboard](/demo/dashboard.png)
+
+#### Leave Request
+
+![LeaveRequest](/demo/leaveRequest.png)
