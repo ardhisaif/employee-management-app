@@ -94,7 +94,6 @@ Run the following command to start the Laravel development server:
 
 ```bash
 php artisan serve
-npm run dev
 ```
 
 Make sure to run the npm command separately, in another terminal:
