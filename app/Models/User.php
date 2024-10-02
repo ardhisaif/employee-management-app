@@ -58,16 +58,11 @@ class User extends Authenticatable
      */
     public function getLeaveQuota(): int
     {
-        $joinDate = Carbon::createFromFormat('Y-m-d', $this->join_date);
-        $monthsWorked = $joinDate->diffInMonths(Carbon::now());
+      $joinDate = $this->join_date;
 
-        if ($monthsWorked <= 6) {
-            return 0;
-        } elseif ($monthsWorked <= 11) {
-            return 6;
-        } else {
-            return 12;
-        }
+      $result = \DB::select('CALL getLeaveQuota(?)', [$joinDate]);
+
+      return $result[0]->leave_quota;
     }
 
     /**
