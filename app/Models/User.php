@@ -48,28 +48,35 @@ class User extends Authenticatable
     }
 
     /**
-     * Menghitung saldo cuti berdasarkan masa kerja.
+     * Menghitung kuota cuti berdasarkan masa kerja.
+     *
+     * @return int
+     */
+    public function getLeaveQuota(): int
+    {
+        $joinDate = Carbon::createFromFormat('d/m/Y', $this->join_date);
+        $monthsWorked = $joinDate->diffInMonths(Carbon::now());
+
+        if ($monthsWorked <= 6) {
+            return 0;
+        } elseif ($monthsWorked <= 11) {
+            return 6;
+        } else {
+            return 12;
+        }
+    }
+
+    /**
+     * Menghitung sisa cuti (leave balance) setelah dikurangi cuti yang sudah diambil.
      *
      * @return int
      */
     public function getLeaveBalance(): int
     {
-        $joinDate = Carbon::createFromFormat('d/m/Y', $this->join_date);
-        $monthsWorked = $joinDate->diffInMonths(Carbon::now());
-
-        // Default leave balance based on months worked
-        if ($monthsWorked <= 6) {
-            $totalLeaveBalance = 0;
-        } elseif ($monthsWorked <= 11) {
-            $totalLeaveBalance = 6;
-        } else {
-            $totalLeaveBalance = 12;
-        }
-
-        // Kurangi total leave balance dengan cuti yang sudah digunakan
+        $leaveQuota = $this->getLeaveQuota();
         $usedLeave = $this->getTotalUsedLeave();
 
-        return $totalLeaveBalance - $usedLeave;
+        return $leaveQuota - $usedLeave;
     }
 
     /**

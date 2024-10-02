@@ -10,16 +10,45 @@
           <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
               <div class="p-6 text-gray-900 dark:text-gray-100">
                   <div class="mt-4">
-                      <h3 class="font-bold text-lg">User Information</h3>
-                      <p><strong>Name:</strong> {{ $user->name }}</p>
-                      <p><strong>Email:</strong> {{ $user->email }}</p>
-                      <p><strong>Birth Place:</strong> {{ $user->birth_place }}</p>
-                      <p><strong>Birth Date:</strong> {{ $user->birth_date }}</p>
-                      <p><strong>Department:</strong> {{ $user->dept }}</p>
-                      <p><strong>Job Title:</strong> {{ $user->job_title }}</p>
-                      <p><strong>Status:</strong> {{ $user->status }}</p>
-                      <p><strong>Join Date:</strong> {{ $user->join_date }}</p>
-                      <p><strong>Leave Balance:</strong> {{ $leaveBalance }} days</p>
+                        <h3 class="font-bold text-lg mb-4">User Information</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Name</p>
+                            <p class="text-lg font-semibold">{{ $user->name }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Email</p>
+                            <p class="text-lg font-semibold">{{ $user->email }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Birth Place</p>
+                            <p class="text-lg font-semibold">{{ $user->birth_place }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Birth Date</p>
+                            <p class="text-lg font-semibold">{{ $user->birth_date }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Department</p>
+                            <p class="text-lg font-semibold">{{ $user->dept }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Job Title</p>
+                            <p class="text-lg font-semibold">{{ $user->job_title }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Status</p>
+                            <p class="text-lg font-semibold">{{ $user->status }}</p>
+                          </div>
+                          <div>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Join Date</p>
+                            <p class="text-lg font-semibold">{{ $user->join_date }}</p>
+                          </div>
+                        </div>
+                        
+                      <br><br>
+                      <p class="text-2xl"><strong>Leave Quota:</strong> {{ Auth::user()->getLeaveQuota() }} days</p>
+                      <p class="text-2xl"><strong>Leave Balance:</strong> {{ Auth::user()->getLeaveBalance() }} days</p>
                   </div>
 
                   <br><br><br>

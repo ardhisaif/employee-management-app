@@ -24,9 +24,13 @@ class UserController extends Controller
         // Ambil leave requests milik user yang sedang login
         $leaveRequests = $user->leaveRequests()->get();
 
+        // Ambil kuota cuti user
+        $leaveQuota = $user->getLeaveQuota();
+
         // Kembalikan view dengan data saldo cuti dan leave requests
         return view('dashboard', [
             'user' => $user,
+            'leaveQuota' => $leaveQuota,
             'leaveBalance' => $leaveBalance,
             'leaveRequests' => $leaveRequests,
         ]);
