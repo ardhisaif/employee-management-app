@@ -57,12 +57,34 @@ class User extends Authenticatable
         $joinDate = Carbon::createFromFormat('d/m/Y', $this->join_date);
         $monthsWorked = $joinDate->diffInMonths(Carbon::now());
 
+        // Default leave balance based on months worked
         if ($monthsWorked <= 6) {
-            return 0;
+            $totalLeaveBalance = 0;
         } elseif ($monthsWorked <= 11) {
-            return 6;
+            $totalLeaveBalance = 6;
         } else {
-            return 12;
+            $totalLeaveBalance = 12;
         }
+
+        // Kurangi total leave balance dengan cuti yang sudah digunakan
+        $usedLeave = $this->getTotalUsedLeave();
+
+        return $totalLeaveBalance - $usedLeave;
+    }
+
+    /**
+     * Menghitung total hari cuti yang sudah digunakan.
+     *
+     * @return int
+     */
+    public function getTotalUsedLeave(): int
+    {
+        // Hitung total days_requested dari semua leave requests yang disetujui (atau semua jika tidak ada status approval)
+        return $this->leaveRequests()->sum('days_requested');
+    }
+
+    public function leaveRequests()
+    {
+        return $this->hasMany(LeaveRequest::class);
     }
 }

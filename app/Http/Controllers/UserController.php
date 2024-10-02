@@ -4,28 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     /**
-     * Menampilkan daftar user dengan saldo cuti mereka.
+     * Menampilkan daftar user dengan saldo cuti mereka dan leave requests.
      *
      * @return \Illuminate\View\View
      */
     public function index()
     {
-        // Ambil semua user dari database
-        $users = User::all();
+        // Ambil user yang sedang login
+        $user = Auth::user();
 
-        // Hitung saldo cuti untuk masing-masing user
-        $leaveBalances = $users->map(function ($user) {
-            return [
-                'name' => $user->name,
-                'leave_balance' => $user->getLeaveBalance(),
-            ];
-        });
+        // Hitung saldo cuti user
+        $leaveBalance = $user->getLeaveBalance();
 
-        // Kembalikan view dengan data saldo cuti
-        return view('dashboard', ['leaveBalances' => $leaveBalances]);
+        // Ambil leave requests milik user yang sedang login
+        $leaveRequests = $user->leaveRequests()->get();
+
+        // Kembalikan view dengan data saldo cuti dan leave requests
+        return view('dashboard', [
+            'user' => $user,
+            'leaveBalance' => $leaveBalance,
+            'leaveRequests' => $leaveRequests,
+        ]);
     }
 }
