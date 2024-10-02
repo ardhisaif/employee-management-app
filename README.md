@@ -90,9 +90,17 @@ php artisan db:seed
 
 ### Running the Application
 
-Start the local development server:
+Run the following command to start the Laravel development server:
+
 ```bash
 php artisan serve
+npm run dev
+```
+
+Make sure to run the npm command separately, in another terminal:
+
+```bash
+npm run dev
 ```
 
 Visit `http://localhost:8000` in your browser to see the application.
