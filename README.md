@@ -105,22 +105,6 @@ npm run dev
 
 Visit `http://localhost:8000` in your browser to see the application.
 
-## Additional Commands
-
-- To run tests:
-  ```bash
-  php artisan test
-  ```
-
-- To clear application cache:
-  ```bash
-  php artisan cache:clear
-  ```
-
-## License
-
-This project is licensed under the MIT License.
-
 ## Installation
 
 1. Clone the repository:
