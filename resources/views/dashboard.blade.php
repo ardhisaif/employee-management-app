@@ -85,16 +85,24 @@
 
                         <div class="mt-4">
                             <label for="start_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Start Date</label>
-                            <input type="date" id="start_date" name="start_date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <input type="date" id="start_date" name="start_date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('start_date') }}">
+                            
+                            @error('start_date')
+                                <span class="text-sm text-red-600 dark:text-red-400">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mt-4">
                             <label for="end_date" class="block text-sm font-medium text-gray-700 dark:text-gray-300">End Date</label>
-                            <input type="date" id="end_date" name="end_date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                            <input type="date" id="end_date" name="end_date" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('end_date') }}">
+                            
+                            @error('end_date')
+                                <span class="text-sm text-red-600 dark:text-red-400">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="mt-6">
-                          <button type="submit" class="px-4 py-2 bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-200 font-semibold rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 shadow-lg transform hover:scale-105 transition-transform duration-300">Submit Leave Request</button>
+                            <button type="submit" class="px-4 py-2 bg-gray-200 text-black dark:bg-gray-700 dark:text-gray-200 font-semibold rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 shadow-lg transform hover:scale-105 transition-transform duration-300">Submit Leave Request</button>
                         </div>
                     </form>
                 </div>

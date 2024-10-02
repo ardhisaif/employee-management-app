@@ -2,6 +2,8 @@
 
 This application is an employee leave request system built using Laravel. With this application, employees can submit leave requests online. 
 
+https://github.com/ardhisaif/employee-management-app/blob/main/Screencast%20from%202024-10-02%2015-23-41.mp4
+
 ## Table of Contents
 
 1. [Database Schema](#database-schema)
@@ -205,3 +207,7 @@ The dashboard provides an overview of the user's information and leave managemen
 #### Leave Request
 
 ![LeaveRequest](/demo/leaveRequest.png)
+
+#### Validation Leave Request
+
+![ValidationLeaveRequest](/demo/validation.png)
