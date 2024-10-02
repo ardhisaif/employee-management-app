@@ -18,10 +18,14 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // protected $fillable = [
+    //     'name',
+    //     'email',
+    //     'password',
+    // ];
+
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+      'name', 'email', 'password', 'birth_place', 'birth_date', 'sex', 'dept', 'job_title', 'status', 'join_date',
     ];
 
     /**
@@ -54,7 +58,7 @@ class User extends Authenticatable
      */
     public function getLeaveQuota(): int
     {
-        $joinDate = Carbon::createFromFormat('d/m/Y', $this->join_date);
+        $joinDate = Carbon::createFromFormat('Y-m-d', $this->join_date);
         $monthsWorked = $joinDate->diffInMonths(Carbon::now());
 
         if ($monthsWorked <= 6) {
