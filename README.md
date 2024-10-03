@@ -42,8 +42,8 @@ https://github.com/user-attachments/assets/c49aad2f-79ca-48fe-8904-e11c0e5ca3ad
 
 1. Clone the repository:
   ```bash
-  git clone https://github.com/your-username/example-app.git
-  cd example-app
+  git clone git@github.com:ardhisaif/employee-management-app.git
+  cd employee-management-app
   ```
 
 ### Composer and NPM Installation
